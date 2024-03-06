@@ -31,23 +31,14 @@ class TreeNode:
         
 # Optimized solution: Reduce the number of times we call the dfs function by returning immediately if the tree is not balanced
 class Solution:
-    def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        _, c = self.dfs(root)
-        return c
-
-    
-    def dfs(self, root: Optional[TreeNode]):
-        if not root:
-            return 0, True
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and not q:
+            return True
         
-        left, cl = self.dfs(root.left)
-        if not cl:
-            return 0, False
-        right, cr = self.dfs(root.right)
-        if not cr: 
-            return 0, False
-
-        if abs(left - right) > 1:
-            return 0, False
+        if not (p and q):
+            return False
         
-        return max(left, right) + 1, True
+        if p.val != q.val:
+            return False
+        
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
