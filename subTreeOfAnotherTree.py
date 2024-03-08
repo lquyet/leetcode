@@ -32,6 +32,7 @@ class NaiveSolution:
         return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
     
 # Optimized solution using string comparison and hashing. Base on the idea of Merkle tree
+# Time complexity: O(m+n) where m is the number of nodes in the main tree and n is the number of nodes in the sub tree
 class Solution:
     _PRE_CHAR = "#"
     _POST_CHAR = "$"
