@@ -14,6 +14,8 @@ class TreeNode:
 # Remember that we must keep the order of parents in the FIRST travel. So we can't use a set to store p's parents. 
 # - For q_parents, we can use a set instead (since we only use it for existence-check only) (but may have to modify the dfs function a little bit)
 
+# UPDATED NOTE: I didn't realize the input tree is a BINARY SEARCH TREE. The following solution will work for any binary tree xD
+# For binary search tree input, we have the following optimized solution.
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         p_parents = []
@@ -50,6 +52,10 @@ class Solution:
             return True
 
         return False
+
+class OptimizedSolution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        return TreeNode(0)
 
 if __name__ == "__main__":
     # Test cases
