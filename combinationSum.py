@@ -58,6 +58,8 @@ class SolutionDPV2:
         dp = [[] for _ in range(target + 1)]
 
         for c in candidates:
+            if c > target:
+                continue
             dp[c].append([c])
             for i in range(c + 1, target + 1):
                 for way in dp[i - c]:
