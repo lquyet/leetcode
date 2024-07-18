@@ -4,18 +4,18 @@ class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
         res = []
         current = []
-        board = [['.' for i in range(n)] for j in range(n)]
+        board = [['.' for _ in range(n)] for _ in range(n)]
 
         def canPlace(x, y):
             for [px, py] in current:
                 if x - px == 0 or y - py == 0 or \
-                (abs(x-px) == (x-py)):
+                (abs(x-px) == abs(y-py)):
                     return False
             return True
 
         def helper(current, index):
             if index == n:
-                res.append(board.copy())
+                res.append([''.join(board[i]) for i in range(n)])
                 return
             
             for y in range(n):
@@ -26,5 +26,7 @@ class Solution:
                     current.pop()
                     board[index][y] = '.'
         
+        helper(current, 0)
+        return res
 
 
