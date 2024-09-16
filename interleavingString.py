@@ -1,3 +1,6 @@
+# I realize that the very core key to identify the "state" of a DP problem is that we must know 2 things:
+# 1. A group of variables that defined the problem
+# 2. The options (or actions) we can make at any time/position
 class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
         n = len(s1)
