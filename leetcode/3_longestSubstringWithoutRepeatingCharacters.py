@@ -1,25 +1,26 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        if len(s) == 0: return 0
+        n = len(s)
+        if n == 0:
+            return 0
 
-        currentMap = {}
-        dp = [0 for _ in range(len(s))]
-        dp[0] = 1
-        currentMap[s[0]] = 0
-        start = 0
+        m = {}
+        currentStart = 0
+        maxLen = 0
 
-        for i in range(1, len(s)):
-            if s[i] not in currentMap:
-                dp[i] = dp[i - 1] + 1
-            else:
-                if currentMap[s[i]] >= start:
-                    start = currentMap[s[i]] + 1
-                    dp[i] = i - currentMap[s[i]]
+        for i in range(n):
+            if s[i] in m:
+                if m[s[i]] < currentStart:
+                    m[s[i]] = i
                 else:
-                    dp[i] = dp[i - 1] + 1
-            currentMap[s[i]] = i
+                    maxLen = max(i-currentStart, maxLen)
+                    currentStart = m[s[i]] + 1
+                    m[s[i]] = i
+            else:
+                m[s[i]] = i
 
-        return max(dp)
+        maxLen = max(i-currentStart+1, maxLen)
+        return maxLen
     
 
 if __name__ == "__main__":
