@@ -13,12 +13,14 @@ class Solution:
                 if m[s[i]] < currentStart:
                     m[s[i]] = i
                 else:
+                    # Should terminate at i-1
                     maxLen = max(i-currentStart, maxLen)
                     currentStart = m[s[i]] + 1
                     m[s[i]] = i
             else:
                 m[s[i]] = i
 
+        # Should terminate at i == n-1
         maxLen = max(i-currentStart+1, maxLen)
         return maxLen
     
