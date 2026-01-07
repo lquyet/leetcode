@@ -7,30 +7,23 @@ from typing import List
 # Bruteforce is possible, but very complicated to implement
 # So we use recursion to "bruteforce" it in a more elegant way
 
-
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         res = []
-        self.helper(n, n, "", res)
+
+        def helper(current, open, close):
+            if open == 0 and close == 0:
+                res.append(current)
+                return
+            
+            if open > 0:
+                helper(current+"(", open-1, close+1)
+            
+            if close > 0:
+                helper(current+")", open, close-1)
+        
+        helper("", n, 0)
         return res
-
-    def helper(self, open: int, close: int, current: str, res: List[str]):
-        if open == close == 0:
-            res.append(current)
-            return
-
-        if open == 0:
-            # add all close
-            self.helper(open, 0, current + ")" * close, res)
-            return
-
-        if open == close:
-            # add open bracket
-            current += "("
-            self.helper(open - 1, close, current, res)
-        elif open < close:
-            self.helper(open - 1, close, current + "(", res)
-            self.helper(open, close - 1, current + ")", res)
 
 
 def main():
